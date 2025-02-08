@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <math.h>
 
 void get_data(int n, int *data) {
     int i;
@@ -145,7 +146,7 @@ int main(){
         printf("Algo_shellsort: Mean � SD = %.6f � %.6f\n", mean_shellsort, sd_shellsort);
         //Print_quick_mean_sd
         printf("Algo_quicksort: Mean � SD = %.6f � %.6f\n", mean_quicksort, sd_quicksort);
-        printf("\n******************************************************************************************************************************************");
+        printf("\n*****************************************************************************************************************************************");
     }
     return 0;
 }
