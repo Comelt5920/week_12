@@ -140,7 +140,7 @@ int main(){
     clock_t begin;
     clock_t end;
     double t_insertionsort[num_exp][run],t_shellsort[num_exp][run],t_quicksort[num_exp][run],t_bubble[num_exp][run],t_selection[num_exp][run],t_merge[num_exp][run];
-    double mean_bubble=0,mean_selection=0,mean_merge=0;
+    double mean_bubble=0,mean_selection=0,mean_merge=0, mean_insertionsort=0, mean_shellsort=0, mean_quicksort=0;
 
     for (exp=0; exp<num_exp; exp++){
         n = num[exp];
@@ -220,6 +220,7 @@ int main(){
 
         }
 
+        /*
         //Calculate_mean_Insertion
         double mean_insertionsort = calculate_mean(t_insertionsort[exp], run);
         //Calculate_sd_Insertion
@@ -234,10 +235,19 @@ int main(){
         double mean_quicksort = calculate_mean(t_quicksort[exp], run);
         //Calculate_mean_shell
         double sd_quicksort = calculate_sd(t_quicksort[exp], run, mean_quicksort);
+        */
+
+        mean_insertionsort = mean_insertionsort/10;
+        mean_shellsort = mean_shellsort/10;
+        mean_quicksort = mean_quicksort/10;
 
         mean_bubble = mean_bubble/10;
         mean_selection = mean_selection/10;
         mean_merge = mean_merge/10;
+
+        double sd_insertionsort = calculate_sd(t_insertionsort[exp], run, mean_insertionsort);
+        double sd_shellsort = calculate_sd(t_shellsort[exp], run, mean_shellsort);
+        double sd_quicksort = calculate_sd(t_quicksort[exp], run, mean_quicksort);
 
         double SD_Bubble = calculate_sd(t_bubble[exp], run, mean_bubble);
         double SD_Selection = calculate_sd(t_selection[exp], run, mean_selection);
