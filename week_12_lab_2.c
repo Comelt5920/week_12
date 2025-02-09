@@ -163,6 +163,7 @@ int main(){
             shellsort(data, n);
             end = clock();
             t_shellsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
+            mean_shellsort=mean_shellsort+t_shellsort[exp][run];
             printf("time_shellsort : %f\t", t_shellsort[exp][t]);
             //////////////////////////////Shell_Zone//////////////////////////////
 
@@ -171,16 +172,17 @@ int main(){
             quicksort(data, 0, n-1);
             end = clock();
             t_quicksort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
+            mean_quicksort = mean_quicksort+t_quicksort[exp][t];
             printf("time_quicksort : %f\t", t_quicksort[exp][t]);
             //////////////////////////////Quick_Zone//////////////////////////////
 
             //////////////////////////////BubbleSort_Zone//////////////////////////////
             begin = clock();
-            Selection(n,data);
+            BubbleSort(n,data);
             end = clock();
-            t_selection[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
-            mean_selection = mean_selection+t_selection[exp][t];
-            printf("Time_Selection_Sort: %f\t", t_selection[exp][t]);
+            t_bubble[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
+            mean_bubble = mean_bubble+t_bubble[exp][t];
+            printf("Time_Bubble_Sort: %f\t",t_bubble[exp][t]);
             //////////////////////////////BubbleSort_Zone//////////////////////////////
 
             //////////////////////////////Selection_Zone//////////////////////////////
