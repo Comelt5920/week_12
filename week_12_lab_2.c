@@ -157,6 +157,14 @@ int main(){
         int data[n];//สร้าง arr data
         for (t = 0; t < run; t++) { //ลูปรับจำนวนรอบ
             printf("\nrun %d\t", t + 1);//print run = จำนวนรอบปัจจุบัน
+            //////////////////////////////BubbleSort_Zone//////////////////////////////
+            get_data(n, data); //รับค่าข้อมูลที่สุ่ม
+            begin = clock(); //จับเวลา
+            BubbleSort(data,n); //เรียกใช้ฟังก์ชัน
+            end = clock(); //หยุดเวลา
+            t_bubble[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC; //คำนวณเวลาที่ใช้รัน ฟังก์ชัน
+            mean_bubble = mean_bubble+t_bubble[exp][t]; //รวมค่าเวลาแต่ละรอบ
+            printf("time_bubble_sort : %f   ",t_bubble[exp][t]); //ปริ้นเวลาที่ใช้ของรอบนั้น
             //////////////////////////////Selection_Zone//////////////////////////////
             get_data(n, data);
             begin = clock();
@@ -167,13 +175,13 @@ int main(){
             printf("time_selection_sort : %f   ", t_selection[exp][t]);
 
             //////////////////////////////Insertion_Zone//////////////////////////////
-            get_data(n, data); //รับค่าข้อมูลที่สุ่ม
-            begin = clock(); //จับเวลา
-            insertionsort(data, n);//เรียกใช้ฟังก์ชัน
-            end = clock();//หยุดเวลา
-            t_insertionsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);//คำนวณเวลาที่ใช้รัน ฟังก์ชัน
-            mean_insertionsort=mean_insertionsort+t_insertionsort[exp][t];//รวมค่าเวลาแต่ละรอบ
-            printf("time_insertion_sort : %f   ", t_insertionsort[exp][t]);//ปริ้นเวลาที่ใช้ของรอบนั้น
+            get_data(n, data);
+            begin = clock();
+            insertionsort(data, n);
+            end = clock();
+            t_insertionsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
+            mean_insertionsort=mean_insertionsort+t_insertionsort[exp][t];
+            printf("time_insertion_sort : %f   ", t_insertionsort[exp][t]);
 
             //////////////////////////////Shell_Zone//////////////////////////////
             get_data(n, data);
@@ -201,14 +209,7 @@ int main(){
             t_quicksort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             mean_quicksort = mean_quicksort+t_quicksort[exp][t];
             printf("time_quick_sort : %f   ", t_quicksort[exp][t]);
-            //////////////////////////////BubbleSort_Zone//////////////////////////////
-            get_data(n, data);
-            begin = clock();
-            BubbleSort(data,n);
-            end = clock();
-            t_bubble[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
-            mean_bubble = mean_bubble+t_bubble[exp][t];
-            printf("time_bubble_sort : %f   ",t_bubble[exp][t]);
+
         }
         //คำนวณค่า mean โดยการเอาเวลาที่รวมมาหารจำนวนrun
         mean_insertionsort = mean_insertionsort/run;
