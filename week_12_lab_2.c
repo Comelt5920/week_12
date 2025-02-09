@@ -139,8 +139,11 @@ int main(){
     int t, run = 10;
     clock_t begin;
     clock_t end;
-    double t_insertionsort[num_exp][run],t_shellsort[num_exp][run],t_quicksort[num_exp][run],t_bubble[num_exp][run],t_selection[num_exp][run],t_merge[num_exp][run];
-    double mean_bubble=0,mean_selection=0,mean_merge=0, mean_insertionsort=0, mean_shellsort=0, mean_quicksort=0;
+    double t_insertionsort[num_exp][run],t_shellsort[num_exp][run],
+    t_quicksort[num_exp][run],t_bubble[num_exp][run],
+    t_selection[num_exp][run],t_merge[num_exp][run];
+    double mean_bubble=0,mean_selection=0,mean_merge=0,
+    mean_insertionsort=0, mean_shellsort=0, mean_quicksort=0;
 
     for (exp=0; exp<num_exp; exp++){
         n = num[exp];
@@ -155,7 +158,8 @@ int main(){
             insertionsort(data, n);
             end = clock();
             t_insertionsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
-            printf("time_algo1 : %f\t", t_insertionsort[exp][t]);
+            mean_insertionsort=mean_insertionsort+t_insertionsort[exp][t];
+            printf("time_insertion : %f\t", t_insertionsort[exp][t]);
             //////////////////////////////Insertion_Zone//////////////////////////////
 
             //////////////////////////////Shell_Zone//////////////////////////////
@@ -163,7 +167,7 @@ int main(){
             shellsort(data, n);
             end = clock();
             t_shellsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
-            mean_shellsort=mean_shellsort+t_shellsort[exp][run];
+            mean_shellsort=mean_shellsort+t_shellsort[exp][t];
             printf("time_shellsort : %f\t", t_shellsort[exp][t]);
             //////////////////////////////Shell_Zone//////////////////////////////
 
@@ -176,6 +180,7 @@ int main(){
             printf("time_quicksort : %f\t", t_quicksort[exp][t]);
             //////////////////////////////Quick_Zone//////////////////////////////
 
+
             //////////////////////////////BubbleSort_Zone//////////////////////////////
             begin = clock();
             BubbleSort(n,data);
@@ -184,7 +189,7 @@ int main(){
             mean_bubble = mean_bubble+t_bubble[exp][t];
             printf("Time_Bubble_Sort: %f\t",t_bubble[exp][t]);
             //////////////////////////////BubbleSort_Zone//////////////////////////////
-
+/*
             //////////////////////////////Selection_Zone//////////////////////////////
             begin = clock();
             Selection(n,data);
@@ -193,7 +198,7 @@ int main(){
             mean_selection = mean_selection+t_selection[exp][t];
             printf("Time_Selection_Sort: %f\t", t_selection[exp][t]);
             //////////////////////////////Selection_Zone//////////////////////////////
-
+*/
             //////////////////////////////Merge_Zone//////////////////////////////
             begin = clock();
             Merge_Sort(data,0,n-1);
@@ -239,17 +244,12 @@ int main(){
         double SD_Selection = calculate_sd(t_selection[exp], run, mean_selection);
         double SD_Merge = calculate_sd(t_merge[exp], run, mean_merge);
 
-
-        //Print_insertion_mean_sd
-        printf("\nAlgo_insertion: Mean � SD = %.6f � %.6f\n", mean_insertionsort, sd_insertionsort);
-        //Print_shell_mean_sd
-        printf("Algo_shellsort: Mean � SD = %.6f � %.6f\n", mean_shellsort, sd_shellsort);
-        //Print_quick_mean_sd
-        printf("Algo_quicksort: Mean � SD = %.6f � %.6f\n", mean_quicksort, sd_quicksort);
-
-        printf("Mean_Bubble : %f\tSD_Bubble : %f\n",mean_bubble,SD_Bubble);
-        printf("Mean_Selection : %f\tSD_Selection : %f\n",mean_selection,SD_Selection);
-        printf("Mean_Merge : %f\tSD_Merge : %f\n",mean_merge,SD_Merge);
+        printf("\nMean_insertion\t : %f\tSD_insertion\t : %f\n",mean_insertionsort,sd_insertionsort);
+        printf("Mean_shell\t : %f\tSD_shell\t : %f\n",mean_shellsort,sd_shellsort);
+        printf("Mean_quicksort\t : %f\tSD_quicksort\t : %f\n",mean_quicksort,sd_quicksort);
+        printf("Mean_Bubble\t : %f\tSD_Bubble\t : %f\n",mean_bubble,SD_Bubble);
+        //printf("Mean_Selection : %f\tSD_Selection : %f\n",mean_selection,sd_Selection);
+        printf("Mean_Merge\t : %f\tSD_Merge\t : %f\n",mean_merge,SD_Merge);
 
         printf("\n*****************************************************************************************************************************************");
     }
