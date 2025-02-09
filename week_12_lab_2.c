@@ -3,6 +3,9 @@
 #include <time.h>
 #include <limits.h>
 #include <math.h>
+#define num_exp 5
+#define run 10
+#define max_size 50000
 //สุ่มข้อมูล
 void get_data(int n, int *data) {
     int i;
@@ -45,13 +48,11 @@ void shellsort(int data[],int n){
         }
     }
 }
-//ฟังก์ชัน quick sort
-void quicksort(int data[], int p, int r){
-    if (p<r){
-        int j = partition(data, p, r);
-        quicksort(data, p, j-1);
-        quicksort(data, j+1, r);
-    }
+//ฟังก์ชัน swap เป็นส่วนของ partition ใน quicksort
+void swap(int* a, int* b){
+    int t = *a;
+    *a = *b;
+    *b = t;
 }
 //ฟังก์ชัน partition ของ quick sort เป็น pivot
 int partition(int data[], int p, int r){
@@ -64,21 +65,23 @@ int partition(int data[], int p, int r){
         if(i<j){
                 swap(&data[i],&data[j]);
         }
-    return j;
     }
+    return j;
 }
-//ฟังก์ชัน swap เป็นส่วนของ partition ใน quicksort
-void swap(int* a, int* b){
-    int t = *a;
-    *a = *b;
-    *b = t;
+//ฟังก์ชัน quick sort
+void quicksort(int data[], int p, int r){
+    if (p<r){
+        int j = partition(data, p, r);
+        quicksort(data, p, j-1);
+        quicksort(data, j+1, r);
+    }
 }
 //ฟังก์ชัน bubble sort
 void BubbleSort(int data[],int n){
     int swapped = 1;
     while(swapped==1){
         swapped =0;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-1;i++){
             if(data[i] > data[i+1]){
                 int tmp = data[i];
                 data[i] = data[i+1];
@@ -105,6 +108,7 @@ void Selection(int data[],int n){
     }
 }
 //ฟังก์ชัน merge sort
+void Merge(int *A, int p, int q, int r);
 void Merge_Sort(int *A,int p,int r){
     if(p<r){
         int q = p+(r-p)/2;
@@ -117,7 +121,7 @@ void Merge_Sort(int *A,int p,int r){
 void Merge(int *A,int p,int q,int r){
     int n1 = q-p+1;
     int n2 = r-q;
-    int L[n1+1],R[n2+1];
+    int L[max_size], R[max_size];
     for(int i=0;i<n1;i++){
         L[i] = A[p+i];
     }
@@ -140,21 +144,18 @@ void Merge(int *A,int p,int q,int r){
 }
 //ส่วนหลัก
 int main(){
-    int exp, num_exp = 5; //ส่วนกำหนดว่าตอนนี้ควรใช้ข้อมูลใน num[]ใหนจาก 1 ถึง 5
+    int exp; //ส่วนกำหนดว่าตอนนี้ควรใช้ข้อมูลใน num[]ใหนจาก 1 ถึง 5
     int i, n, num[5] = {1000,5000,10000,20000,50000};//จำนวนข้อมูลใน data
-    int t, run = 10; //กำหนดจำนวนรอบในการ run
+    int t; //กำหนดจำนวนรอบในการ run
     clock_t begin; //จับเวลา time.h
     clock_t end; //หยุดเวลา time.h
-    double t_insertionsort[num_exp][run],t_shellsort[num_exp][run],
-    t_quicksort[num_exp][run],t_bubble[num_exp][run],
-    t_selection[num_exp][run],t_merge[num_exp][run];//ประกาศตัวแปรเวลา
-    double mean_bubble=0,mean_selection=0,mean_merge=0,
-    mean_insertionsort=0, mean_shellsort=0, mean_quicksort=0;//กำหนดตัวแปร mean
+    double t_insertionsort[num_exp][run],t_shellsort[num_exp][run],t_quicksort[num_exp][run],t_bubble[num_exp][run], t_selection[num_exp][run],t_merge[num_exp][run];//ประกาศตัวแปรเวลา
+    double mean_bubble=0,mean_selection=0,mean_merge=0,mean_insertionsort=0, mean_shellsort=0, mean_quicksort=0;//กำหนดตัวแปร mean
 
     for (exp=0; exp<num_exp; exp++){ //run โดยใช้ข้อมูล index ใน num[]
         n = num[exp]; //กำหนดตัวแปร n
         printf("\nn= %d\n", n);//ปริ้น n = ค่า num[exp]
-        int data[n];//สร้าง arr data
+        int data[max_size];//สร้าง arr data
         for (t = 0; t < run; t++) { //ลูปรับจำนวนรอบ
             printf("\nrun %d\t", t + 1);//print run = จำนวนรอบปัจจุบัน
             //////////////////////////////BubbleSort_Zone//////////////////////////////
