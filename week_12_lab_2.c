@@ -151,37 +151,25 @@ int main(){
             get_data(n, data);
 
             //////////////////////////////Insertion_Zone//////////////////////////////
-            //insertion_timer_Begin
             begin = clock();
-            //insertion_function
             insertionsort(data, n);
-            //insertion_timer_End
             end = clock();
-            //calculate_time
             t_insertionsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             printf("time_algo1 : %f\t", t_insertionsort[exp][t]);
             //////////////////////////////Insertion_Zone//////////////////////////////
 
             //////////////////////////////Shell_Zone//////////////////////////////
-            //insertion_timer_Begin
             begin = clock();
-            //insertion_function
             shellsort(data, n);
-            //insertion_timer_End
             end = clock();
-            //calculate_time
             t_shellsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             printf("time_shellsort : %f\t", t_shellsort[exp][t]);
             //////////////////////////////Shell_Zone//////////////////////////////
 
             //////////////////////////////Quick_Zone//////////////////////////////
-            //insertion_timer_Begin
             begin = clock();
-            //insertion_function
             quicksort(data, 0, n-1);
-            //insertion_timer_End
             end = clock();
-            //calculate_time
             t_quicksort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             printf("time_quicksort : %f\t", t_quicksort[exp][t]);
             //////////////////////////////Quick_Zone//////////////////////////////
@@ -196,13 +184,9 @@ int main(){
             //////////////////////////////BubbleSort_Zone//////////////////////////////
 
             //////////////////////////////Selection_Zone//////////////////////////////
-            //timer_Begin
             begin = clock();
-            //function
             Selection(n,data);
-            //timer_End
             end = clock();
-            //calculate_time
             t_selection[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
             mean_selection = mean_selection+t_selection[exp][t];
             printf("Time_Selection_Sort: %f\t", t_selection[exp][t]);
