@@ -160,7 +160,7 @@ int main(){
             t_insertionsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             mean_insertionsort=mean_insertionsort+t_insertionsort[exp][t];
             printf("time_insertion : %f\t", t_insertionsort[exp][t]);
-            //////////////////////////////Insertion_Zone//////////////////////////////
+
 
             //////////////////////////////Shell_Zone//////////////////////////////
             begin = clock();
@@ -169,7 +169,7 @@ int main(){
             t_shellsort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             mean_shellsort=mean_shellsort+t_shellsort[exp][t];
             printf("time_shellsort : %f\t", t_shellsort[exp][t]);
-            //////////////////////////////Shell_Zone//////////////////////////////
+
 
             //////////////////////////////Quick_Zone//////////////////////////////
             begin = clock();
@@ -178,7 +178,7 @@ int main(){
             t_quicksort[exp][t] = ((double) (end - begin)/ CLOCKS_PER_SEC);
             mean_quicksort = mean_quicksort+t_quicksort[exp][t];
             printf("time_quicksort : %f\t", t_quicksort[exp][t]);
-            //////////////////////////////Quick_Zone//////////////////////////////
+
 
 
             //////////////////////////////BubbleSort_Zone//////////////////////////////
@@ -188,8 +188,8 @@ int main(){
             t_bubble[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
             mean_bubble = mean_bubble+t_bubble[exp][t];
             printf("Time_Bubble_Sort: %f\t",t_bubble[exp][t]);
-            //////////////////////////////BubbleSort_Zone//////////////////////////////
-/*
+
+
             //////////////////////////////Selection_Zone//////////////////////////////
             begin = clock();
             Selection(n,data);
@@ -197,8 +197,8 @@ int main(){
             t_selection[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
             mean_selection = mean_selection+t_selection[exp][t];
             printf("Time_Selection_Sort: %f\t", t_selection[exp][t]);
-            //////////////////////////////Selection_Zone//////////////////////////////
-*/
+
+
             //////////////////////////////Merge_Zone//////////////////////////////
             begin = clock();
             Merge_Sort(data,0,n-1);
@@ -206,27 +206,10 @@ int main(){
             t_merge[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC;
             mean_merge = mean_merge+t_merge[exp][t];
             printf("Time_Merge_Sort: %f\n",t_merge[exp][t]);
-            //////////////////////////////Merge_Zone//////////////////////////////
+
 
 
         }
-
-        /*
-        //Calculate_mean_Insertion
-        double mean_insertionsort = calculate_mean(t_insertionsort[exp], run);
-        //Calculate_sd_Insertion
-        double sd_insertionsort = calculate_sd(t_insertionsort[exp], run, mean_insertionsort);
-
-        //Calculate_mean_shell
-        double mean_shellsort = calculate_mean(t_shellsort[exp], run);
-        //Calculate_mean_shell
-        double sd_shellsort = calculate_sd(t_shellsort[exp], run, mean_shellsort);
-
-        //Calculate_mean_shell
-        double mean_quicksort = calculate_mean(t_quicksort[exp], run);
-        //Calculate_mean_shell
-        double sd_quicksort = calculate_sd(t_quicksort[exp], run, mean_quicksort);
-        */
 
         mean_insertionsort = mean_insertionsort/10;
         mean_shellsort = mean_shellsort/10;
@@ -240,16 +223,16 @@ int main(){
         double sd_shellsort = calculate_sd(t_shellsort[exp], run, mean_shellsort);
         double sd_quicksort = calculate_sd(t_quicksort[exp], run, mean_quicksort);
 
-        double SD_Bubble = calculate_sd(t_bubble[exp], run, mean_bubble);
-        double SD_Selection = calculate_sd(t_selection[exp], run, mean_selection);
-        double SD_Merge = calculate_sd(t_merge[exp], run, mean_merge);
+        double sd_bubble = calculate_sd(t_bubble[exp], run, mean_bubble);
+        double sd_selection = calculate_sd(t_selection[exp], run, mean_selection);
+        double sd_merge = calculate_sd(t_merge[exp], run, mean_merge);
 
         printf("\nMean_insertion\t : %f\tSD_insertion\t : %f\n",mean_insertionsort,sd_insertionsort);
         printf("Mean_shell\t : %f\tSD_shell\t : %f\n",mean_shellsort,sd_shellsort);
         printf("Mean_quicksort\t : %f\tSD_quicksort\t : %f\n",mean_quicksort,sd_quicksort);
-        printf("Mean_Bubble\t : %f\tSD_Bubble\t : %f\n",mean_bubble,SD_Bubble);
-        //printf("Mean_Selection : %f\tSD_Selection : %f\n",mean_selection,sd_Selection);
-        printf("Mean_Merge\t : %f\tSD_Merge\t : %f\n",mean_merge,SD_Merge);
+        printf("Mean_Bubble\t : %f\tSD_Bubble\t : %f\n",mean_bubble,sd_bubble);
+        printf("Mean_Selection : %f\tSD_Selection : %f\n",mean_selection,sd_selection);
+        printf("Mean_Merge\t : %f\tSD_Merge\t : %f\n",mean_merge,sd_merge);
 
         printf("\n*****************************************************************************************************************************************");
     }
