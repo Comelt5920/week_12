@@ -25,6 +25,7 @@ double calculate_sd(double data[], int n, double mean) {
     return sqrt(sum / n);
 }
 //ฟังก์ชัน insertion sort
+// ฌณัฏฐ์ ญาณภัทโธ
 void insertionsort(int data[],int n){
     for(int i=1;i<n;i++){
         int tmp = data[i];
@@ -37,6 +38,7 @@ void insertionsort(int data[],int n){
     }
 }
 //ฟังก์ชัน shell sort
+// ฌณัฏฐ์ ญาณภัทโธ
 void shellsort(int data[],int n){
     for(int d=n/2;d>0;d=d/2){
         for(int i=d;i<n;i++){
@@ -69,6 +71,7 @@ int partition(int data[], int p, int r){
     return j;
 }
 //ฟังก์ชัน quick sort
+// ฌณัฏฐ์ ญาณภัทโธ
 void quicksort(int data[], int p, int r){
     if (p<r){
         int j = partition(data, p, r);
@@ -77,6 +80,7 @@ void quicksort(int data[], int p, int r){
     }
 }
 //ฟังก์ชัน bubble sort
+// ชุวารี สาระวารี
 void BubbleSort(int data[],int n){
     int swapped = 1;
     while(swapped==1){
@@ -92,6 +96,7 @@ void BubbleSort(int data[],int n){
     }
 }
 //ฟังก์ชัน selection sort
+// ชุวารี สาระวารี
 void Selection(int data[],int n){
     int tmp,j,k;
     for(int i=0;i<n;i++){
@@ -108,6 +113,7 @@ void Selection(int data[],int n){
     }
 }
 //ฟังก์ชัน merge sort
+// ชุวารี สาระวารี
 void Merge(int *A, int p, int q, int r);
 void Merge_Sort(int *A,int p,int r){
     if(p<r){
@@ -118,6 +124,7 @@ void Merge_Sort(int *A,int p,int r){
     }
 }
 //ฟังก์ชัน merge ใน merge sort
+// ชุวารี สาระวารี
 void Merge(int *A,int p,int q,int r){
     int n1 = q-p+1;
     int n2 = r-q;
@@ -158,6 +165,7 @@ int main(){
         int data[max_size];//สร้าง arr data
         for (t = 0; t < run; t++) { //ลูปรับจำนวนรอบ
             printf("\nrun %d\t", t + 1);//print run = จำนวนรอบปัจจุบัน
+            
             //////////////////////////////BubbleSort_Zone//////////////////////////////
             get_data(n, data); //รับค่าข้อมูลที่สุ่ม
             begin = clock(); //จับเวลา
@@ -166,6 +174,7 @@ int main(){
             t_bubble[exp][t] = (double)(end - begin) / CLOCKS_PER_SEC; //คำนวณเวลาที่ใช้รัน ฟังก์ชัน
             mean_bubble = mean_bubble+t_bubble[exp][t]; //รวมค่าเวลาแต่ละรอบ
             printf("time_bubble_sort : %f   ",t_bubble[exp][t]); //ปริ้นเวลาที่ใช้ของรอบนั้น
+            
             //////////////////////////////Selection_Zone//////////////////////////////
             get_data(n, data);
             begin = clock();
